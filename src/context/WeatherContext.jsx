@@ -8,7 +8,7 @@ export const WeatherContextProvider = ({ children }) => {
 
   const [values, setValues] = useState([]);
 
-  const [place, setPlace] = useState("jaipur");
+  const [place, setPlace] = useState("banglore");
   const [location, setLocation] = useState("");
 
   const fetchWeather = async () => {
@@ -30,8 +30,8 @@ export const WeatherContextProvider = ({ children }) => {
 
     try {
       const response = await axios.request(options);
-      console.log(response);
       const weatherData = Object.values(response?.data?.locations)[0];
+      console.log(weatherData);
       setLocation(weatherData.address);
       setValues(weatherData.values);
       setWeather(weatherData.values[0]);
@@ -46,15 +46,12 @@ export const WeatherContextProvider = ({ children }) => {
     fetchWeather();
   }, [place]);
 
-  useEffect(() => {
-    console.log(values);
-  }, [values]);
-
   const value = {
     weather,
     setPlace,
     values,
     location,
+    place,
   };
 
   return (
