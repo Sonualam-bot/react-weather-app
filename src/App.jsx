@@ -3,10 +3,11 @@ import "./App.css";
 import { BackgroundLayout, MiniCard, WeatherCard } from "./components";
 import Navbar from "./components/Navbar";
 import { WeatherContext } from "./context/WeatherContext";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const { location, weather, values } = useContext(WeatherContext);
-  console.log(values);
+
   return (
     <div className="w-full h-screen text-white px-8">
       <Navbar />
@@ -34,6 +35,23 @@ function App() {
           })}
         </div>
       </main>
+
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 3000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+        }}
+      />
     </div>
   );
 }

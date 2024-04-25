@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const WeatherContext = createContext();
 
@@ -31,14 +32,12 @@ export const WeatherContextProvider = ({ children }) => {
     try {
       const response = await axios.request(options);
       const weatherData = Object.values(response?.data?.locations)[0];
-      console.log(weatherData);
       setLocation(weatherData.address);
       setValues(weatherData.values);
       setWeather(weatherData.values[0]);
+      toast.success(`Weather fetched for ${place}`);
     } catch (error) {
-      console.error(error);
-      //if the api throws error
-      alert("This place does not exist");
+      toast.error("This place does not exist");
     }
   };
 
