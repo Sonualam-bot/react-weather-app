@@ -22,7 +22,7 @@ function App() {
           iconString={weather.conditions}
           conditions={weather.conditions}
         />
-        <div className=" flex justify-center gap-8 flex-wrap w-[60%] ">
+        <div className=" flex justify-center gap-8 flex-wrap w-[100%] sm:w-[60%] ">
           {values?.slice(1, 7).map((curr) => {
             return (
               <MiniCard
